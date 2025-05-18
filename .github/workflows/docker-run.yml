@@ -1,0 +1,20 @@
+name: Run Python in Docker
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t python-app .
+
+      - name: Run Docker container
+        run: docker run python-app
